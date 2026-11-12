@@ -1,0 +1,11 @@
+Using Python 3.12.8 environment at: outputs/vllm-metal-lab/.venv
+WARN Range requests not supported for vllm-0.33.0+cpu-cp38-abi3-macosx_11_0_arm64.whl; streaming wheel
+WARN Range requests not supported for vllm_metal-0.33.0-cp312-cp312-macosx_15_0_arm64.whl; streaming wheel
+Resolved 181 packages in 2.94s
+Would download 2 packages
+Would uninstall 2 packages
+Would install 2 packages
+ - vllm==0.33.0+cpu (from file://<LAB>/downloads/vllm-0.33.0+cpu-cp38-abi3-macosx_11_0_arm64.whl)
+ + vllm @ https://github.com/vllm-project/vllm/releases/download/v0.33.0rc3/vllm-0.33.0%2Bcpu-cp38-abi3-macosx_11_0_arm64.whl
+ - vllm-metal==0.33.0 (from file://<LAB>/downloads/vllm_metal-0.33.0-cp312-cp312-macosx_15_0_arm64.whl)
+ + vllm-metal @ https://github.com/vllm-project/vllm-metal/releases/download/v0.33.0/vllm_metal-0.33.0-cp312-cp312-macosx_15_0_arm64.whl

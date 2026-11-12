@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-11-12T12:55:25.960282+00:00",
+  "arguments": {
+    "base_url": "http://127.0.0.1:8011",
+    "model": "bench",
+    "tokenizer": "<LAB>/models/Qwen3-0.6B-4bit",
+    "output": "<LAB>/results/controlled-run-01/kv-q4-2048mib/capacity-c4-p4096",
+    "concurrency": 4,
+    "input_tokens": 4096,
+    "output_tokens": 64,
+    "requests": 8,
+    "warmups": 2,
+    "repeats": 3,
+    "seed": 713,
+    "server_pid": 10342,
+    "timeout": 600,
+    "sample_interval": 0.1
+  },
+  "workload": "Closed-loop, synchronized workers; fixed total requests per repeat; warmups excluded; deterministic exact-length token IDs; greedy fixed-length output with ignore_eos.",
+  "overall": {
+    "requests": 24,
+    "successful_requests": 24,
+    "errors": 0,
+    "wall_s": 77.96829170797719,
+    "output_tokens": 1536,
+    "aggregate_output_tokens_per_s": 19.70031619716566,
+    "ttft_s": {
+      "mean": 5.929244093759432,
+      "p50": 4.743396145495353,
+      "p95": 10.972742740190006
+    },
+    "latency_s": {
+      "mean": 12.942602335092184,
+      "p50": 12.684796062501846,
+      "p95": 20.3230732715223
+    },
+    "decode_span_s": {
+      "mean": 7.0132509149164735,
+      "p50": 8.010165520536248,
+      "p95": 9.772769301795051
+    },
+    "note": "Throughput includes input prefill and HTTP overhead. TTFT uses first generated token-ID event. Decode span is first-to-last token-ID event timing; events may group tokens."
+  },
+  "repeats": [
+    {
+      "requests": 8,
+      "successful_requests": 8,
+      "errors": 0,
+      "wall_s": 25.206896791001782,
+      "output_tokens": 512,
+      "aggregate_output_tokens_per_s": 20.31190131197629,
+      "ttft_s": {
+        "mean": 5.688177802141581,
+        "p50": 4.319636291504139,
+        "p95": 10.311843681248138
+      },
+      "latency_s": {
+        "mean": 12.552734760640305,
+        "p50": 12.484436104539782,
+        "p95": 18.868003621144453
+      },
+      "decode_span_s": {
+        "mean": 6.864470374996017,
+        "p50": 8.294639791507507,
+        "p95": 9.206606768650818
+      },
+      "note": "Throughput includes input prefill and HTTP overhead. TTFT uses first generated token-ID event. Decode span is first-to-last token-ID event timing; events may group tokens."
+    },
+    {
+      "requests": 8,
+      "successful_requests": 8,
+      "errors": 0,
+      "wall_s": 25.78730279195588,
+      "output_tokens": 512,
+      "aggregate_output_tokens_per_s": 19.854732545340642,
+      "ttft_s": {
+        "mean": 5.881173067748023,
+        "p50": 4.393949541496113,
+        "p95": 10.791425952292048
+      },
+      "latency_s": {
+        "mean": 12.84268997899926,
+        "p50": 12.77525666647125,
+        "p95": 19.452686964918396
+      },
+      "decode_span_s": {
+        "mean": 6.961421906249598,
+        "p50": 8.37597356250626,
+        "p95": 9.502295558431069
+      },
+      "note": "Throughput includes input prefill and HTTP overhead. TTFT uses first generated token-ID event. Decode span is first-to-last token-ID event timing; events may group tokens."
+    },
+    {
+      "requests": 8,
+      "successful_requests": 8,
+      "errors": 0,
+      "wall_s": 26.974092125019524,
+      "output_tokens": 512,
+      "aggregate_output_tokens_per_s": 18.98117636830861,
+      "ttft_s": {
+        "mean": 6.218381411388691,
+        "p50": 5.634428083023522,
+        "p95": 10.387875744336634
+      },
+      "latency_s": {
+        "mean": 13.432382265636988,
+        "p50": 13.370114770979853,
+        "p95": 19.579581742014852
+      },
+      "decode_span_s": {
+        "mean": 7.213860463503806,
+        "p50": 7.976495312526822,
+        "p95": 10.074467750097392
+      },
+      "note": "Throughput includes input prefill and HTTP overhead. TTFT uses first generated token-ID event. Decode span is first-to-last token-ID event timing; events may group tokens."
+    }
+  ],
+  "resources": {
+    "peak_process_tree_rss_bytes": 2158100480,
+    "kv_cache_usage_peak_by_metric": {
+      "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"bench\"}": 0.8896492728828058
+    },
+    "request_gauge_peak_by_metric": {
+      "vllm:num_requests_running{engine=\"0\",model_name=\"bench\"}": 4.0,
+      "vllm:num_requests_waiting{engine=\"0\",model_name=\"bench\"}": 3.0,
+      "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"bench\",reason=\"capacity\"}": 3.0,
+      "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"bench\",reason=\"deferred\"}": 0.0
+    },
+    "preemptions_delta_by_metric": {
+      "vllm:num_preemptions_total{engine=\"0\",model_name=\"bench\"}": 0.0
+    },
+    "samples": 617,
+    "monitor_errors": [],
+    "note": "RSS includes CPU/possibly shared pages and is not GPU allocation or occupied KV memory; KV usage gauge is a fraction of the preallocated pool."
+  }
+}

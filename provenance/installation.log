@@ -1,0 +1,27 @@
+Verified vllm_metal-0.33.0-cp312-cp312-macosx_15_0_arm64.whl: sha256:fcf2224250976412a3a8304ec6f48525060f6d30a38c1afad0a97844e03c8dd0
+Verified vllm-0.33.0+cpu-cp38-abi3-macosx_11_0_arm64.whl: sha256:74840d3eec2ec097de26c331f803e276b5c7eb235709e624cd9b58ee3cc5b5c8
+Using Python 3.12.8 environment at: outputs/vllm-metal-lab/.venv
+Checked 1 package in 64ms
+Using Python 3.12.8 environment at: outputs/vllm-metal-lab/.venv
+Resolved 108 packages in 135ms
+Checked 108 packages in 2ms
+Using Python 3.12.8 environment at: outputs/vllm-metal-lab/.venv
+Resolved 14 packages in 2.12s
+Downloading torch (132.4MiB)
+Downloading torchvision (1.7MiB)
+ Downloaded torchvision
+ Downloaded torch
+Prepared 3 packages in 7.37s
+Uninstalled 3 packages in 1.21s
+Installed 3 packages in 42.64s
+ - torch==2.14.0
+ + torch==2.16.0.dev20261013
+ - torchaudio==2.11.1
+ + torchaudio==2.11.0.dev20261013
+ - torchvision==0.29.2
+ + torchvision==0.30.0.dev20261013
+Using Python 3.12.8 environment at: outputs/vllm-metal-lab/.venv
+Using Python 3.12.8 environment at: outputs/vllm-metal-lab/.venv
+Checked 181 packages in 3ms
+Found 1 incompatibility
+The package `vllm` requires `torch==2.14.0 ; platform_machine == 'ppc64le' or platform_machine == 'riscv64' or sys_platform == 'darwin'`, but `2.16.0.dev20261013` is installed

@@ -1,0 +1,4 @@
+Using Python 3.12.8 environment at: outputs/vllm-metal-lab/.venv
+Checked 181 packages in 11ms
+Found 1 incompatibility
+The package `vllm` requires `torch==2.14.0 ; platform_machine == 'ppc64le' or platform_machine == 'riscv64' or sys_platform == 'darwin'`, but `2.16.0.dev20261013` is installed

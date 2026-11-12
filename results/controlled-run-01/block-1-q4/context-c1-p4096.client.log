@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "<LAB>/benchmark.py", line 328, in <module>
+    asyncio.run(main(arguments()))
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 686, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "<LAB>/benchmark.py", line 256, in main
+    prompts = await build_prompts(session, args, max(args.requests, n_warm))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<LAB>/benchmark.py", line 122, in build_prompts
+    raise RuntimeError("Generated prompt was shorter than requested")
+RuntimeError: Generated prompt was shorter than requested

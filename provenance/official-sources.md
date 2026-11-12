@@ -1,0 +1,29 @@
+# Official source notes
+
+Checked November 12, 2026. These notes distinguish release-specific behavior from moving `main` documentation. Local package/model manifests and benchmark logs remain the evidence of what actually ran.
+
+## Installation and release
+
+- [Official installation documentation](https://docs.vllm.ai/projects/vllm-metal/en/latest/installation/): Apple Silicon, macOS 15 or later, and native Python 3.12; release installation uses prebuilt wheels. Homebrew is the stable route; the script defaults to development and accepts `--stable`. The script's default environment is `~/.venv-vllm-metal`; this lab uses a separate environment to preserve that installation. Plain `pip install vllm-metal` is not the supported complete setup.
+- [vLLM Metal v0.33.0 release](https://github.com/vllm-project/vllm-metal/releases/tag/v0.33.0): latest stable when checked, released November 4, 2026, commit `9c86a7b`. Its compatible core is vLLM 0.33.0, whose macOS wheel is attached to upstream tag `v0.33.0rc3`. This release fixes explicit KV-byte budgeting and physical block overrides; do not assume those controls worked in the pre-existing 0.32.0 environment.
+- [Version-pinned installer](https://github.com/vllm-project/vllm-metal/blob/v0.33.0/install.sh): installs upstream core, then Metal's wheel, then the wheel's Torch requirements. Source-checkout execution takes a different path that builds native artifacts. The lab follows the release-wheel sequence in an isolated environment.
+- [Version-pinned project dependencies](https://github.com/vllm-project/vllm-metal/blob/v0.33.0/pyproject.toml): MLX `0.32.4`; mlx-lm commit `4cfc6478473b0668ede3eb0cc93f2a9181a15052`; mlx-vlm commit `b7bec926d061b6fd8935b244eb3e76435aa04514`. MLX's exact pin protects compatibility with the prebuilt native extension. The lab's freeze file records the complete resolved installation.
+
+## Expected Torch metadata conflict
+
+- [Metal v0.33.0 Torch requirements](https://github.com/vllm-project/vllm-metal/blob/v0.33.0/vllm_metal/requirements-torch.txt): the official override installs `torch==2.16.0.dev20261013`, `torchvision==0.30.0.dev20261013`, and `torchaudio==2.11.0.dev20261013` from the nightly CPU index.
+- [Upstream vLLM v0.33.0rc3 CPU requirements](https://github.com/vllm-project/vllm/blob/v0.33.0rc3/requirements/cpu.txt): declares `torch==2.14.0` on Darwin. Consequently, applying Metal's official override leaves a dependency-metadata conflict reported by `uv pip check`.
+- [Merged Metal PR #1117](https://github.com/vllm-project/vllm-metal/pull/1117): intentionally installs the nightly after vLLM for earlier MPS submission, describes runtime validation, and plans to remove the override when upstream vLLM declares a compatible Torch version. This supports interpreting the one recorded mismatch as an intentional override. It does **not** make `pip check` pass or prove every runtime path works. The lab preserves the diagnostic and verifies its actual MLX serving path separately.
+
+## Serving, benchmarking, and cache controls
+
+- [Version-pinned macOS benchmarking guide](https://github.com/vllm-project/vllm-metal/blob/v0.33.0/docs/benchmarking-macos.md): use a real HTTP server, warm every arm, alternate repeated comparisons, disable prefix caching for uncached work, and save actual token counts and machine state. Client concurrency does not prove the number of scheduler decode rows. TTFT includes queueing and prefill; whole-run output throughput includes prefill and HTTP time. Streamed chunks may contain multiple tokens.
+- [Version-pinned cache configuration](https://github.com/vllm-project/vllm-metal/blob/v0.33.0/docs/configuration.md): `--gpu-memory-utilization` sizes the automatic budget; positive `--kv-cache-memory-bytes` overrides KV storage capacity, with block rounding and additional memory needed outside the pool. The former `VLLM_METAL_MEMORY_FRACTION` is removed. Keep the default commit probe enabled. KV pages are populated lazily; configured capacity, occupied KV blocks, process RSS, and device allocation are distinct quantities.
+- [Version-pinned supported models](https://github.com/vllm-project/vllm-metal/blob/v0.33.0/docs/supported_models.md): Qwen3 is supported on the primary MLX paged-attention path. Other checkpoints/quantizations within supported families generally work, but the table is not a guarantee for every conversion.
+- [TurboQuant documentation](https://docs.vllm.ai/projects/vllm-metal/en/latest/turboquant/): KV compression is a separate lossy variable from weight quantization, configured through `--additional-config`. Hybrid GDN recurrent state is not compressed. This lab holds KV precision constant for its 4-bit versus 8-bit weight comparison; no model-quality equivalence follows from speed measurements.
+
+## Matched model pair
+
+- [4-bit model card](https://huggingface.co/mlx-community/Qwen3-0.6B-4bit) and [8-bit model card](https://huggingface.co/mlx-community/Qwen3-0.6B-8bit): both identify `Qwen/Qwen3-0.6B` as the base and mlx-lm 0.24.0 as the conversion version.
+- [4-bit configuration](https://huggingface.co/mlx-community/Qwen3-0.6B-4bit/blob/main/config.json) and [8-bit configuration](https://huggingface.co/mlx-community/Qwen3-0.6B-8bit/blob/main/config.json): matching architecture and group size 64, differing weight bits. Both have 28 layers, eight KV heads, head dimension 128, and no sliding window. Pin actual downloaded revisions and verify tokenizer hashes in the model manifest.
+- Derived from that geometry, FP16 KV storage is `2 (K,V) × 28 × 8 × 128 × 2 bytes = 114,688 bytes/token`, before block/layout overhead. A full 4,096-token sequence therefore represents 448 MiB of theoretical KV data. Weight bit width does not change this calculation. This is a capacity estimate, not measured resident memory.

@@ -1,0 +1,3 @@
+# Preserve captured metrics and terminal output without source whitespace checks.
+results/** -whitespace
+provenance/*.log -whitespace

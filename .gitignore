@@ -1,0 +1,11 @@
+/.venv/
+/cache/
+/downloads/
+/models/
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+*.safetensors
+*.gguf
+*.whl

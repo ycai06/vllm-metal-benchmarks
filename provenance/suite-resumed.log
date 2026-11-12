@@ -1,0 +1,13 @@
+Running block-1-q4-resume-1/context-c1-p4096
+Running block-2-q8/weight-c1-p256
+Running block-3-q8/weight-c1-p256
+Running block-4-q4/weight-c1-p256
+Running block-4-q4/batch-reverse-c8-p1024
+Running block-4-q4/batch-reverse-c4-p1024
+Running block-4-q4/batch-reverse-c1-p1024
+Running block-4-q4/context-reverse-c1-p4096
+Running block-4-q4/context-reverse-c1-p1024
+Running block-4-q4/context-reverse-c1-p256
+Running kv-q4-1024mib/capacity-c4-p4096
+Running kv-q4-2048mib/capacity-c4-p4096
+Completed: <LAB>/results/controlled-run-01

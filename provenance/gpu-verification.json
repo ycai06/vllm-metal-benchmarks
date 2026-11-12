@@ -1,0 +1,20 @@
+{
+  "device": "Device(gpu, 0)",
+  "metal_available": true,
+  "device_info": {
+    "device_name": "Apple M2 Pro",
+    "max_recommended_working_set_size": 26800603136,
+    "memory_size": 34359738368,
+    "architecture": "applegpu_g14s",
+    "max_buffer_length": 20100448256,
+    "resource_limit": 499000
+  },
+  "matmul_value": 64.0,
+  "versions": {
+    "vllm": "0.33.0+cpu",
+    "vllm-metal": "0.33.0",
+    "mlx": "0.32.4",
+    "mlx-lm": "0.32.3.dev12+g4cfc64784",
+    "torch": "2.16.0.dev20261013"
+  }
+}

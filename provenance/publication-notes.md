@@ -1,0 +1,3 @@
+# Publication notes
+
+Exported from the completed November 12, 2026 Mac experiment. The 504 measured requests and 88 excluded warmups retain their original measurements, output text/token IDs, and prompt hashes. Historical local paths are redacted; original unsanitized files remain in the local lab. The private preserved-file inventory and its machine-specific helper are excluded; the summary check of 223 unchanged files is retained. The artifact integrity manifest in this repository covers the exported files rather than the original local files. Git history records any source formatting or portability changes.

@@ -1,0 +1,16 @@
+{
+  "recorded_local_date": "2026-11-12",
+  "chip": "Apple M2 Pro",
+  "cpu_cores": 10,
+  "gpu_cores": 16,
+  "unified_memory_bytes": 34359738368,
+  "macOS": "27.0.1",
+  "architecture": "arm64",
+  "AC_power": true,
+  "low_power_mode": true,
+  "free_disk_GiB_initial": 155,
+  "existing_installation": "<HOME>/.venv-vllm-metal",
+  "existing_plugin_version": "0.32.0",
+  "existing_model": "<HOME>/Models/Qwen3.5-9B-MLX-4bit",
+  "note": "Existing environment and models preserved; serial numbers omitted."
+}

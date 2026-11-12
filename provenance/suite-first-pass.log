@@ -1,0 +1,15 @@
+Running block-1-q4/weight-c1-p256
+Running block-1-q4/batch-c1-p1024
+Running block-1-q4/batch-c4-p1024
+Running block-1-q4/batch-c8-p1024
+Running block-1-q4/context-c1-p256
+Running block-1-q4/context-c1-p1024
+Running block-1-q4/context-c1-p4096
+Traceback (most recent call last):
+  File "<LAB>/run_suite.py", line 167, in <module>
+    main()
+  File "<LAB>/run_suite.py", line 152, in main
+    benchmark(directory, proc, f"context-c1-p{length}", 1, length, 4)
+  File "<LAB>/run_suite.py", line 119, in benchmark
+    raise subprocess.CalledProcessError(client.returncode, command)
+subprocess.CalledProcessError: Command '['<LAB>/.venv/bin/python', '<LAB>/benchmark.py', '--base-url', 'http://127.0.0.1:8011', '--model', 'bench', '--tokenizer', '<LAB>/models/Qwen3-0.6B-4bit', '--output', '<LAB>/results/controlled-run-01/block-1-q4/context-c1-p4096', '--server-pid', '9413', '--seed', '713', '--concurrency', '1', '--input-tokens', '4096', '--output-tokens', '64', '--requests', '4', '--warmups', '2', '--repeats', '3', '--sample-interval', '0.1']' returned non-zero exit status 1.
